@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Pools;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Application/landing');
 });
+
+Route::get('/navigation',function(){
+    return view('Application/map');
+});
+
+Route::get('/trip-planner',function(){
+    return view('Application/trip-planner');
+});
+
+Route::get('/pools',function(){
+    return view('Application/pools');
+});
+
+Route::get('/pools/create',function(){
+    return view('Application/create-pools');
+});
+
+Route::post('/pools/create',[Pools::class,'AddPool']);
+
+Route::get('/pools/join',[Pools::class, 'ListPool']);
+
+Route::post('/pools/join',[Pools::class,'JoinPool']);
+
+Route::get('/pools/requests', [Pools::class,'ShowRequests']);
+Route::post('/pools/accept', [Pools::class,'AcceptRequests']);
+
+Route::get('/pools/accepted-requests', [Pools::class,'ShowAcceptedRequests']);
 
 Route::middleware([
     'auth:sanctum',
