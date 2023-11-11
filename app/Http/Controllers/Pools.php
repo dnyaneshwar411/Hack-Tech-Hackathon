@@ -23,7 +23,7 @@ class Pools extends Controller
         $pool->vehicle = $req['vehicle'];
         $pool->starting_journey_at = $req['starting_journey_at'];
         $pool->save();
-        return redirect()->back();
+        return redirect('pools/join');
     }
     public function ListPool(){
         $pools = created_pools::all();
@@ -46,11 +46,13 @@ class Pools extends Controller
         return view('Application/requests')->with(compact('requested_pools'));
     }
     public function AcceptRequests(Request $req){
-        request_pools::where('pool_id', '=' ,$req['pool_id'])->update(['status'=>'approved']);
+        $request_pools = request_pools::find($req['pool_id']);
+        $request_pools->status = 'approved';
+        $request_pools->update();
         return redirect()->back();
     }
     public function ShowAcceptedRequests(){
-        $accepted_pools = request_pools::where('user_posted_id', '=', Auth::user()->id)->where('status', '=', 'approved')->get();
+        $accepted_pools = request_pools::where('user_request_id', '=', Auth::user()->id)->where('status', '=', 'approved')->get();
         return view('Application/accepted-requests')->with(compact('accepted_pools'));
     }
 }

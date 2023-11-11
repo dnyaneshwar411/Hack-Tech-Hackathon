@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Hawks</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         .container {
@@ -11,11 +11,24 @@
         }
         
         .container>div{
+            text-align: center;
             width: 48%;
             margin:2px auto;
-            background-color: red;
+            background-color: rgba(0, 0, 0, 0.75);
+            background-blend-mode: multiply;
             display: inline-block;
             height: 50vh;
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+        }
+        .container button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 20px;
+            font-weight: 600;
         }
     </style>
   </head>
@@ -25,17 +38,17 @@
 
     {{-- IF USER LOGGED IN --}}
     <div class="container my-4">
-        <div>
-            <a href="{{url('trip-planner')}}"><button type="button" class="btn btn-outline-primary">Trip Planner</button></a>
+        <div style="background-image: url('{{asset('/assets/trip-planner.avif')}}')">
+            <a href="{{url('trip-planner')}}"><button type="button" class="btn btn-primary">Trip Planner</button></a>
         </div>
-        <div>
-            <a href="{{url('navigation')}}"><button type="button" class="btn btn-outline-success">Navigation and Transportation</button></a>
+        <div style="background-image: url('{{asset('/assets/navigation.avif')}}')">
+            <a href="{{url('navigation')}}"><button type="button" class="btn btn-success">Navigation and Transportation</button></a>
         </div>
-        <div>
-            <a href="{{url('pools')}}"><button type="button" class="btn btn-outline-info">Pooling</button></a>
+        <div style="background-image: url('{{asset('/assets/pooling.jpg')}}')">
+            <a href="{{url('pools')}}"><button type="button" class="btn btn-info">Pooling</button></a>
         </div>
-        <div>
-            <button type="button" class="btn btn-outline-dark">Communities</button>
+        <div style="background-image: url('{{asset('/assets/community.jpg')}}')">
+            <a href="{{url('community')}}"><button type="button" class="btn btn-dark">Communities</button></a>
         </div>
     </div>
     
